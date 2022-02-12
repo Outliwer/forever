@@ -1,0 +1,6 @@
+rootProject.name = 'forever'
+include 'forever-api'
+include 'forever-dao'
+include 'forever-integration'
+include 'forever-service'
+
