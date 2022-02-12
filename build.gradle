@@ -1,19 +1,55 @@
-plugins {
-    id 'java'
+ext {
+    springBootVersion = '1.5.22.RELEASE'
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.22.RELEASE")
+    }
 }
 
 group 'org.example'
 version '1.0-SNAPSHOT'
 
-repositories {
-    mavenCentral()
+allprojects {
+    apply plugin: 'java'
 }
 
-dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+project(":forever-api") {
+    apply plugin: 'org.springframework.boot'
+    dependencies {
+        compile project(":forever-service")
+
+        compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+        compile "org.springframework.boot:spring-boot-starter-aop:$springBootVersion"
+        compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
+        compile "org.springframework.boot:spring-boot-starter-cache:$springBootVersion"
+    }
 }
 
-test {
-    useJUnitPlatform()
+project(":forever-common") {
+    dependencies {
+
+    }
+}
+
+project(":forever-dao") {
+    dependencies {
+
+    }
+}
+
+project(":forever-integration") {
+    dependencies {
+
+    }
+}
+
+project(":forever-service") {
+    dependencies {
+
+    }
 }
